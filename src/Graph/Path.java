@@ -7,11 +7,13 @@ public class Path {
 	private Node node;
 	private ArrayList<Link> path = new ArrayList<Link>();
 
-	public Path(Node node, Link firstLink){
+	public Path(Node node,ArrayList<Link> newPaths ){
 		this.node = node;
-		addPath(firstLink);
+		path.addAll(newPaths);
 	}
-	
+	public Path(Node node){
+		this.node = node;
+	}
 	public void addPath(Link link) {
 		path.add(link);
 	}

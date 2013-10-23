@@ -3,12 +3,18 @@ package Graph;
 import java.util.ArrayList;
 
 public class Node {
-	
-	private char name;	
+
+	private char name;
 	private ArrayList<Link> links;
 	private boolean visited;
-	
 
+	public Link getLink(char nextNode) {
+		for (int i = 0; i < this.links.size(); i++) {
+			if (this.links.get(i).getNextNode(this.name).getName() == nextNode)
+				return this.links.get(i);
+		}
+		return null;
+	}
 
 	public void setLinks(ArrayList<Link> links) {
 		this.links = links;
@@ -22,16 +28,16 @@ public class Node {
 		this.visited = visited;
 	}
 
-	public Node(char name){
+	public Node(char name) {
 		visited = false;
 		links = new ArrayList<Link>();
 		this.setName(name);
 	}
-	
-	public void addLink(Link link){
+
+	public void addLink(Link link) {
 		links.add(link);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Node [name=" + name + ", links=" + links + "]" + "\n";
@@ -44,11 +50,9 @@ public class Node {
 	public char getName() {
 		return name;
 	}
+
 	public void setName(char name) {
 		this.name = name;
 	}
-	
-	
-	
 
 }

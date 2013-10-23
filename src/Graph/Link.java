@@ -37,6 +37,14 @@ public class Link {
 	}
 	
 	
+	public void addConnection(){
+		this.currentConnections++;
+	}
+	
+	public void removeConnection(){
+		this.currentConnections--;
+	}
+	
 	public Node getNodeOne() {
 		return nodeOne;
 	}

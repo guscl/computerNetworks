@@ -18,9 +18,10 @@ public class Network {
 		this.workloadPath = workloadPath;
 	}
 
-	private void shp(char node1, char node2) {
-		Node currentNode = null;
-		//Path tempPath = new Path();
+	private Path shp(char node1, char node2) {
+		Node currentNode = null,nextNode=null;
+		
+		Path path;
 		ArrayList<Path> paths = new ArrayList<Path>();
 		Queue queue = new Queue();
 
@@ -32,19 +33,42 @@ public class Network {
 
 		// First Node inside
 		queue.addNode(currentNode);
-		
+		path = new Path(currentNode);
+		paths.add(path);
+
 		while (!queue.isEmpty()) {
 			currentNode = queue.removeNode();
+
 			// Just search the non-visited
 			if (!currentNode.isVisited()) {
 				currentNode.setVisited(true);
-				
+				// If found return its path
+				if (currentNode.getName() == node2) {
+					for (int i = 0; i < paths.size(); i++) {
+						if (paths.get(i).getNode().getName() == currentNode
+								.getName()) {
+							successfulRequests++;
+							return paths.get(i);
+						}
+					}
+
+				}
+
 				for (int i = 0; i < currentNode.getLinks().size(); i++) {
-					queue.addNode(currentNode.getLinks().get(i)
-							.getNextNode(currentNode.getName()));
+					if (!currentNode.getLinks().get(i).isBusy()) {
+						nextNode = currentNode.getLinks().get(i)
+								.getNextNode(currentNode.getName());
+						path.addPath(currentNode.getLinks().get(i));
+						path = new Path(nextNode,path.getPath());
+						paths.add(path);
+						queue.addNode(nextNode);
+					}else{
+						return null;
+					}
 				}
 			}
 		}
+		return null;
 
 	}
 
