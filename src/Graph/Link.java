@@ -17,6 +17,12 @@ public class Link {
 		return currentConnections;
 	}
 
+	public Node getNextNode(char currentNode){
+		if(currentNode == nodeOne.getName())
+			return nodeTwo;
+		else
+			return nodeOne;
+	}
 
 	public void setCurrentConnections(int currentConnections) {
 		this.currentConnections = currentConnections;

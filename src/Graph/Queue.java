@@ -16,8 +16,8 @@ public class Queue {
 		nodes.add(node);
 	}
 	
-	public void removeNode(){
-		nodes.remove(0);
+	public Node removeNode(){
+		return nodes.remove(0);
 	}
 	
 	public boolean isEmpty(){

@@ -7,15 +7,8 @@ public class Node {
 	private char name;	
 	private ArrayList<Link> links;
 	private boolean visited;
-	private int hop = 0;
 	
-	public int getHop() {
-		return hop;
-	}
 
-	public void setHop(int hop) {
-		this.hop = hop;
-	}
 
 	public void setLinks(ArrayList<Link> links) {
 		this.links = links;

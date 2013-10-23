@@ -19,13 +19,32 @@ public class Network {
 	}
 
 	private void shp(char node1, char node2) {
-		Node nodeOne = null;
-		// Finding the node inside the array
+		Node currentNode = null;
+		//Path tempPath = new Path();
+		ArrayList<Path> paths = new ArrayList<Path>();
+		Queue queue = new Queue();
+
+		// Finding the first node inside the array
 		for (int i = 0; i < graph.size(); i++) {
 			if (graph.get(i).getName() == node1)
-				nodeOne = graph.get(i);
+				currentNode = graph.get(i);
 		}
+
+		// First Node inside
+		queue.addNode(currentNode);
 		
+		while (!queue.isEmpty()) {
+			currentNode = queue.removeNode();
+			// Just search the non-visited
+			if (!currentNode.isVisited()) {
+				currentNode.setVisited(true);
+				
+				for (int i = 0; i < currentNode.getLinks().size(); i++) {
+					queue.addNode(currentNode.getLinks().get(i)
+							.getNextNode(currentNode.getName()));
+				}
+			}
+		}
 
 	}
 
