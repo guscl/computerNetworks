@@ -7,10 +7,6 @@ import java.util.ArrayList;
 
 public class Main {
 
-	/*
-	 * Lembrar que é bidirecional, ou seja se eu add A B, tem que criar B A
-	 */
-
 	public static void main(String[] args) {
 
 		// Creation of the possible nodes, they are 26(Alphabet)
@@ -19,7 +15,7 @@ public class Main {
 			// Creation of the topology
 			createTopology(nodes);
 			System.out.println(nodes.toString());
-			//System.out.println(nodes.get(0).getLinks().toString());
+			// System.out.println(nodes.get(0).getLinks().toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,44 +27,43 @@ public class Main {
 		// Creating the graph topology
 		BufferedReader br = new BufferedReader(new FileReader(
 				"simpleTopology.txt"));
-		try {
-			String line = br.readLine();
-			// Creating buffer variables
-			char node1, node2;
-			int propagation, capacity;
-			Link link = null;
-			Node nodeOne = null, nodeTwo = null;
-			String[] splitedSegments;
 
-			while (line != null) {
-				splitedSegments = line.split(" ");
-				node1 = splitedSegments[0].charAt(0);
-				node2 = splitedSegments[1].charAt(0);
-				propagation = Integer.valueOf(splitedSegments[2]);
-				capacity = Integer.valueOf(splitedSegments[3]);
+		String line = br.readLine();
+		// Creating buffer variables
+		char node1, node2;
+		int propagation, capacity;
+		Link link = null;
+		Node nodeOne = null, nodeTwo = null;
+		String[] splitedSegments;
 
-				// Finding the nodes inside the array
-				for (int i = 0; i < nodes.size(); i++) {
-					if (nodes.get(i).getName() == node1)
-						nodeOne = nodes.get(i);
-				}
-				for (int j = 0; j < nodes.size(); j++) {
-					if (nodes.get(j).getName() == node2)
-						nodeTwo = nodes.get(j);
-				}
+		while (line != null) {
+			splitedSegments = line.split(" ");
+			node1 = splitedSegments[0].charAt(0);
+			node2 = splitedSegments[1].charAt(0);
+			propagation = Integer.valueOf(splitedSegments[2]);
+			capacity = Integer.valueOf(splitedSegments[3]);
 
-				// Creating the link between the nodes
-				link = new Link(propagation, capacity, nodeOne, nodeTwo);
-
-				// Adding the link to the nodes
-				nodeOne.addLink(link);
-				nodeTwo.addLink(link);
-				line = br.readLine();
+			// Finding the nodes inside the array
+			for (int i = 0; i < nodes.size(); i++) {
+				if (nodes.get(i).getName() == node1)
+					nodeOne = nodes.get(i);
+			}
+			for (int j = 0; j < nodes.size(); j++) {
+				if (nodes.get(j).getName() == node2)
+					nodeTwo = nodes.get(j);
 			}
 
-		} finally {
-			br.close();
+			// Creating the link between the nodes
+			link = new Link(propagation, capacity, nodeOne, nodeTwo);
+
+			// Adding the link to the nodes
+			nodeOne.addLink(link);
+			nodeTwo.addLink(link);
+			line = br.readLine();
 		}
+
+		br.close();
+
 	}
 
 	public static ArrayList<Node> nodeCreation() {
