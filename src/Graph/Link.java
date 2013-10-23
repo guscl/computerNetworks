@@ -6,12 +6,11 @@ public class Link {
 	public String toString() {
 		return "Link [nodeOne=" + nodeOne.getName() + ", nodeTwo=" + nodeTwo.getName()
 				+ ", propagation=" + propagation + ", capacity=" + capacity
-				+ ", busy=" + busy + "]";
+				+ ", connections=" + currentConnections + "]";
 	}
 	private Node nodeOne,nodeTwo;
 	private int propagation;
 	private int capacity;
-	private boolean busy;
 	private int currentConnections;
 	
 	public int getCurrentConnections() {
@@ -45,11 +44,8 @@ public class Link {
 		this.nodeTwo = nodeTwo;
 	}
 	public boolean isBusy() {
-		return busy;
-	}
-	public void setBusy(boolean busy) {
-		this.busy = busy;
-	}
+		return (capacity == currentConnections);	}
+	
 	
 	public int getPropagation() {
 		return propagation;
