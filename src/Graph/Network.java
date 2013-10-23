@@ -20,18 +20,11 @@ public class Network {
 
 	private void shp(char node1, char node2) {
 		Node nodeOne = null;
-		// Finding the nodes inside the array
+		// Finding the node inside the array
 		for (int i = 0; i < graph.size(); i++) {
 			if (graph.get(i).getName() == node1)
 				nodeOne = graph.get(i);
 		}
-		
-		
-		
-		
-		
-		
-		
 		
 
 	}
