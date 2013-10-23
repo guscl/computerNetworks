@@ -12,7 +12,18 @@ public class Link {
 	private int propagation;
 	private int capacity;
 	private boolean busy;
+	private int currentConnections;
 	
+	public int getCurrentConnections() {
+		return currentConnections;
+	}
+
+
+	public void setCurrentConnections(int currentConnections) {
+		this.currentConnections = currentConnections;
+	}
+
+
 	public Link(int propagation, int capacity, Node nodeOne, Node nodeTwo){
 		this.propagation = propagation;
 		this.capacity = capacity;
